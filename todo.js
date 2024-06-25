@@ -15,9 +15,8 @@ function rendertodolist(){
 
     let todolistHtml='';
 
-    for(let i=0; i<todolist.length; i++){       
-     
-        const todoobject=todolist[i];
+    todolist.forEach(function(todoobject,index){
+
         const name= todoobject.name;    
         const duedate=todoobject.duedate;
         // const { name, duedate }= todoobject;
@@ -26,15 +25,16 @@ function rendertodolist(){
         <div> ${duedate} </div>
         <button onclick="
 
-        todolist.splice(${i},1);
+        todolist.splice(${index},1);
         rendertodolist();
         " class="delete-button">
         Delete </button>
         `; 
         
         todolistHtml+=html;
-    }
 
+
+    });
 
     document.querySelector('.js-todo-lsit')
     .innerHTML=todolistHtml;
