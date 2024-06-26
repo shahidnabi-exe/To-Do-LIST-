@@ -1,6 +1,7 @@
 
 
-const todolist=[ {
+const todolist=[ 
+    {
     name:"Book Reading",
     duedate: '12-3-24'
 },
@@ -13,33 +14,44 @@ rendertodolist();
 
 function rendertodolist(){
 
-    let todolistHtml='';
+    let todolistHtml ='';
 
-    todolist.forEach(function(todoobject,index){
+    todolist.forEach((todoobject, index) => {
+
+     // Shortcut :   const { name, duedate }= todoobject;
 
         const name= todoobject.name;    
         const duedate=todoobject.duedate;
-        // const { name, duedate }= todoobject;
-        const html=`
+
+        const html = `
+w
         <div>    ${name} </div>
         <div> ${duedate} </div>
-        <button onclick="
-
-        todolist.splice(${index},1);
-        rendertodolist();
-        " class="delete-button">
+        <button  class="delete-button js-delete-button">
         Delete </button>
         `; 
         
         todolistHtml+=html;
 
-
     });
 
     document.querySelector('.js-todo-lsit')
     .innerHTML=todolistHtml;
+
+    document.querySelectorAll( '.js-delete-button')
+    .forEach( (deletebutton, index ) => {
+        deletebutton.addEventListener('click', () => {
+            todolist.splice(index, 1);
+            rendertodolist();
+
+        });
+    });
 }
 
+document.querySelector('.js-add-button')
+    .addEventListener('click', () => {
+        add();
+    } );
 
 
 
